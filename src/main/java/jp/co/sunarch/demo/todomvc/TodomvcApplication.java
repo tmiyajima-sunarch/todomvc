@@ -18,8 +18,7 @@ public class TodomvcApplication {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
       http.authorizeRequests()
-          .mvcMatchers("/api/**").authenticated()
-          .anyRequest().permitAll()
+          .anyRequest().authenticated()
           .and()
           .httpBasic()
           .and()
