@@ -21,6 +21,12 @@ public class TodomvcApplication {
           .mvcMatchers("/api/**").authenticated()
           .anyRequest().permitAll()
           .and()
+          .httpBasic()
+          .and()
+          .formLogin()
+          .and()
+          .logout()
+          .and()
           .csrf().disable();
     }
   }

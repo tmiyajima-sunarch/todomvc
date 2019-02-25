@@ -5,7 +5,7 @@
     </b-navbar>
     <b-container>
       <h1 class="my-3">Todo</h1>
-      <b-form class="my-3" @submit.prevent="addTodo">
+      <b-form class="my-3" @submit.prevent="dispatchAddTodo">
         <b-input-group>
           <b-form-input name="title" v-model="newTodo" />
           <b-input-group-append>
@@ -19,16 +19,19 @@
           :key="todo.id"
           class="todo"
           :class="{ 'is-completed': todo.completed }"
-          @click="toggleTodo(todo)"
+          @click="dispatchToggleTodo(todo)"
         >
           {{ todo.title }}
         </b-list-group-item>
       </b-list-group>
       <b-nav pills>
-        <b-nav-item :active="showAll" @click="setShowAll(true)">
+        <b-nav-item :active="filter === 'NONE'" @click="showAll">
           All todo
         </b-nav-item>
-        <b-nav-item :active="!showAll" @click="setShowAll(false)">
+        <b-nav-item
+          :active="filter === 'NOT_COMPLETED_ONLY'"
+          @click="showNotCompletedOnly"
+        >
           Not completed
         </b-nav-item>
       </b-nav>
@@ -37,39 +40,39 @@
 </template>
 
 <script>
-// TODO delete
-let id = 0;
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      newTodo: "",
-      todos: [],
-      showAll: true
+      newTodo: ""
     };
   },
 
+  mounted() {
+    this.loadTodos();
+  },
+
   computed: {
-    filteredTodos() {
-      if (this.showAll) {
-        return this.todos;
-      }
-      return this.todos.filter(todo => !todo.completed);
-    }
+    ...mapGetters(["filteredTodos", "filter"])
   },
 
   methods: {
-    addTodo() {
-      this.todos.push({ id: ++id, title: this.newTodo, completed: false });
+    ...mapActions([
+      "loadTodos",
+      "addTodo",
+      "toggleTodo",
+      "showAll",
+      "showNotCompletedOnly"
+    ]),
+
+    dispatchAddTodo() {
+      this.addTodo(this.newTodo);
       this.newTodo = "";
     },
 
-    toggleTodo(todo) {
-      todo.completed = !todo.completed;
-    },
-
-    setShowAll(value) {
-      this.showAll = value;
+    dispatchToggleTodo(todo) {
+      this.toggleTodo(todo.id);
     }
   }
 };
