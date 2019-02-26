@@ -2,6 +2,11 @@
 
 Vue.jsを用いたTodoMVCの実装サンプルです。
 
+- Vue.jsによるシングルページアプリケーションをSpring Bootで配信
+- Spring BootでのRest APIと連携
+- Spring Securityによる認証
+- [frontend-maven-plugin]によるシングルページアプリケーションのビルド
+
 ## 実行方法
 
 以下のコマンドで、サーバーを起動します。
@@ -31,3 +36,6 @@ Vue.jsを用いたTodoMVCの実装サンプルです。
 - Bootstrap Vue
 - Axios
 - vue-cli (Ver. 3)
+
+
+[frontend-maven-plugin]: https://github.com/eirslett/frontend-maven-plugin
