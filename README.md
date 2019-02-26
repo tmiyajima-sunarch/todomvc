@@ -19,6 +19,7 @@ Vue.jsを用いたTodoMVCの実装サンプルです。
 ### サーバーサイド
 
 - Spring Boot
+- Spring MVC
 - Spring Security
 - Spring Data JPA
 
@@ -27,5 +28,6 @@ Vue.jsを用いたTodoMVCの実装サンプルです。
 - Vue.js
 - Vuex
 - Vue Router
+- Bootstrap Vue
 - Axios
 - vue-cli (Ver. 3)
