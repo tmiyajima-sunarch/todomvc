@@ -45,7 +45,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      newTodo: ""
+      newTodo: "",
     };
   },
 
@@ -54,7 +54,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(["filteredTodos", "filter"])
+    ...mapGetters(["filteredTodos", "filter"]),
   },
 
   methods: {
@@ -63,7 +63,7 @@ export default {
       "addTodo",
       "toggleTodo",
       "showAll",
-      "showNotCompletedOnly"
+      "showNotCompletedOnly",
     ]),
 
     dispatchAddTodo() {
@@ -73,8 +73,8 @@ export default {
 
     dispatchToggleTodo(todo) {
       this.toggleTodo(todo.id);
-    }
-  }
+    },
+  },
 };
 </script>
 

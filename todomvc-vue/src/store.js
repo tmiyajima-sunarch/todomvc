@@ -6,13 +6,13 @@ Vue.use(Vuex);
 
 const filters = {
   none: "NONE",
-  notCompletedOnly: "NOT_COMPLETED_ONLY"
+  notCompletedOnly: "NOT_COMPLETED_ONLY",
 };
 
 export default new Vuex.Store({
   state: {
     todos: [],
-    filter: filters.notCompletedOnly
+    filter: filters.notCompletedOnly,
   },
 
   mutations: {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     },
 
     updateTodo(state, newTodo) {
-      const index = state.todos.findIndex(todo => todo.id === newTodo.id);
+      const index = state.todos.findIndex((todo) => todo.id === newTodo.id);
       if (index === -1) {
         state.todos.push(newTodo);
       } else {
@@ -35,7 +35,7 @@ export default new Vuex.Store({
 
     setFilter(state, filter) {
       state.filter = filter;
-    }
+    },
   },
 
   actions: {
@@ -46,7 +46,7 @@ export default new Vuex.Store({
 
     async addTodo({ commit }, title) {
       const { data: newTodo } = await axios.post("/api/todos", {
-        title
+        title,
       });
       commit("addTodo", newTodo);
     },
@@ -64,7 +64,7 @@ export default new Vuex.Store({
 
     showNotCompletedOnly({ commit }) {
       commit("setFilter", filters.notCompletedOnly);
-    }
+    },
   },
 
   getters: {
@@ -74,9 +74,9 @@ export default new Vuex.Store({
 
     filteredTodos(state) {
       if (state.filter === filters.notCompletedOnly) {
-        return state.todos.filter(todo => !todo.completed);
+        return state.todos.filter((todo) => !todo.completed);
       }
       return state.todos;
-    }
-  }
+    },
+  },
 });

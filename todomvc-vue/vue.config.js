@@ -9,8 +9,8 @@ module.exports = {
         onProxyReq(proxyReq) {
           // Set basic auth for developing
           proxyReq.setHeader("Authorization", "Basic dXNlcjp1c2Vy");
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 };
