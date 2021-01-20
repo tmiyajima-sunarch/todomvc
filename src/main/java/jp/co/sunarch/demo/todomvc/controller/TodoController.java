@@ -5,6 +5,8 @@ import jp.co.sunarch.demo.todomvc.service.TodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class TodoController {
   }
 
   @PostMapping
-  public Todo addTodo(Principal principal, @RequestBody AddTodoBody body) {
+  public Todo addTodo(Principal principal, @Valid @RequestBody AddTodoBody body) {
     long todoId = this.todoService.addTodo(principal.getName(), body.getTitle());
     return this.todoService.findTodo(principal.getName(), todoId);
   }
@@ -36,7 +38,7 @@ public class TodoController {
   }
 
   @PutMapping("{todoId}")
-  public Todo updateTodo(Principal principal, @PathVariable long todoId, @RequestBody UpdateTodoBody body) {
+  public Todo updateTodo(Principal principal, @PathVariable long todoId, @Valid @RequestBody UpdateTodoBody body) {
     this.todoService.updateTodo(principal.getName(), todoId, body.getTitle());
     return this.todoService.findTodo(principal.getName(), todoId);
   }
@@ -48,6 +50,7 @@ public class TodoController {
   }
 
   public static class AddTodoBody {
+    @NotBlank
     private String title;
 
     public String getTitle() {
@@ -60,6 +63,7 @@ public class TodoController {
   }
 
   public static class UpdateTodoBody {
+    @NotBlank
     private String title;
 
     public String getTitle() {
