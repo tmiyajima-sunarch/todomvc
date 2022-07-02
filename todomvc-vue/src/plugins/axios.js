@@ -1,6 +1,3 @@
-"use strict";
-
-import Vue from "vue";
 import axios from "axios";
 
 // Full config:  https://github.com/axios/axios#request-config
@@ -39,10 +36,8 @@ _axios.interceptors.response.use(
   }
 );
 
-Plugin.install = function (Vue) {
-  Vue.axios = _axios;
-  window.axios = _axios;
-  Object.defineProperties(Vue.prototype, {
+const plugin = (app, options) => {
+  Object.defineProperties(app.config.globalProperties, {
     axios: {
       get() {
         return _axios;
@@ -56,8 +51,6 @@ Plugin.install = function (Vue) {
   });
 };
 
-Vue.use(Plugin);
-
-export default Plugin;
+export default plugin;
 
 export { _axios as axios };

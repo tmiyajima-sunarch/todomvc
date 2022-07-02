@@ -1,15 +1,12 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import { createStore } from "vuex";
 import { axios } from "@/plugins/axios";
-
-Vue.use(Vuex);
 
 const filters = {
   none: "NONE",
   notCompletedOnly: "NOT_COMPLETED_ONLY",
 };
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     todos: [],
     filter: filters.notCompletedOnly,

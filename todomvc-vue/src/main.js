@@ -1,14 +1,14 @@
-import Vue from "vue";
-import "./plugins/bootstrap-vue";
-import "./plugins/axios";
+import { createApp } from "vue";
 import App from "./App.vue";
+import axios from "./plugins/axios";
 import router from "./router";
 import store from "./store";
+import "bootstrap/dist/css/bootstrap.css";
 
-Vue.config.productionTip = false;
+const app = createApp(App);
 
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount("#app");
+app.use(axios);
+app.use(store);
+app.use(router);
+
+app.mount("#app");
