@@ -33,8 +33,10 @@
 				"vscjava.vscode-java-pack",
 				"pivotal.vscode-boot-dev-pack",
 				"xabikos.javascriptsni",
-				"dariofuzinato.vue-peek",
 				"redhat.vscode-yaml",
+				"dariofuzinato.vue-peek",
+				"dbaeumer.vscode-eslint",
+				"vue.volar",
 				// for Log
 				"emilast.logfilehig",
 				"ibm.output-colorizer",
