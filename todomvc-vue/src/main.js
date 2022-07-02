@@ -9,8 +9,9 @@ Vue.config.productionTip = false;
 
 const app = createApp({
   router,
-  store,
   ...App,
 });
+
+app.use(store);
 
 app.mount("#app");
