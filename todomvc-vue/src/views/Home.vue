@@ -9,8 +9,16 @@
       <h1 class="my-3">Todo</h1>
       <form class="my-3" @submit.prevent="dispatchAddTodo">
         <div class="input-group">
-          <input type="text" class="form-control" name="title" v-model="newTodo" aria-describedby="button-add" />
-          <button type="submit" class="btn btn-primary" id="button-add">Add</button>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            v-model="newTodo"
+            aria-describedby="button-add"
+          />
+          <button type="submit" class="btn btn-primary" id="button-add">
+            Add
+          </button>
         </div>
       </form>
       <ul class="list-group my-3">
@@ -26,12 +34,20 @@
       </ul>
       <ul class="nav nav-pills">
         <li class="nav-item">
-          <a class="nav-link" :class="{ active: filter === 'NONE' }" @click="showAll">
+          <a
+            class="nav-link"
+            :class="{ active: filter === 'NONE' }"
+            @click="showAll"
+          >
             All todo
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" :class="{ active: filter === 'NOT_COMPLETED_ONLY' }" @click="showNotCompletedOnly">
+          <a
+            class="nav-link"
+            :class="{ active: filter === 'NOT_COMPLETED_ONLY' }"
+            @click="showNotCompletedOnly"
+          >
             Not completed
           </a>
         </li>
