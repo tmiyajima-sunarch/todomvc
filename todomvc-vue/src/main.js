@@ -1,4 +1,4 @@
-import Vue from "vue";
+import Vue, { createApp } from "vue";
 import "./plugins/bootstrap-vue";
 import "./plugins/axios";
 import App from "./App.vue";
@@ -7,8 +7,10 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
-new Vue({
+const app = createApp({
   router,
   store,
-  render: (h) => h(App),
-}).$mount("#app");
+  ...App,
+});
+
+app.mount("#app");
