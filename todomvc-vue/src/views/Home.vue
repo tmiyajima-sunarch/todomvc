@@ -1,41 +1,42 @@
 <template>
   <div class="home">
-    <b-navbar toggleable="lg" type="light" variant="light">
-      <b-navbar-brand href="#">Todo MVC Vue sample</b-navbar-brand>
-    </b-navbar>
-    <b-container>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Todo MVC Vue sample</a>
+      </div>
+    </nav>
+    <div class="container">
       <h1 class="my-3">Todo</h1>
-      <b-form class="my-3" @submit.prevent="dispatchAddTodo">
-        <b-input-group>
-          <b-form-input name="title" v-model="newTodo" />
-          <b-input-group-append>
-            <b-button type="submit">Add</b-button>
-          </b-input-group-append>
-        </b-input-group>
-      </b-form>
-      <b-list-group class="my-3">
-        <b-list-group-item
+      <form class="my-3" @submit.prevent="dispatchAddTodo">
+        <div class="input-group">
+          <input type="text" class="form-control" name="title" v-model="newTodo" aria-describedby="button-add" />
+          <button type="submit" class="btn btn-primary" id="button-add">Add</button>
+        </div>
+      </form>
+      <ul class="list-group my-3">
+        <li
+          class="list-group-item todo"
           v-for="todo in filteredTodos"
           :key="todo.id"
-          class="todo"
           :class="{ 'is-completed': todo.completed }"
           @click="dispatchToggleTodo(todo)"
         >
           {{ todo.title }}
-        </b-list-group-item>
-      </b-list-group>
-      <b-nav pills>
-        <b-nav-item :active="filter === 'NONE'" @click="showAll">
-          All todo
-        </b-nav-item>
-        <b-nav-item
-          :active="filter === 'NOT_COMPLETED_ONLY'"
-          @click="showNotCompletedOnly"
-        >
-          Not completed
-        </b-nav-item>
-      </b-nav>
-    </b-container>
+        </li>
+      </ul>
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link" :class="{ active: filter === 'NONE' }" @click="showAll">
+            All todo
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" :class="{ active: filter === 'NOT_COMPLETED_ONLY' }" @click="showNotCompletedOnly">
+            Not completed
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
