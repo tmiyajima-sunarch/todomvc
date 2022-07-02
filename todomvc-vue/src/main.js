@@ -7,11 +7,9 @@ import store from "./store";
 
 Vue.config.productionTip = false;
 
-const app = createApp({
-  router,
-  ...App,
-});
+const app = createApp(App);
 
 app.use(store);
+app.use(router);
 
 app.mount("#app");
