@@ -16,7 +16,7 @@ import org.springframework.http.ResponseEntity;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class TodoScenarioTest {
+class TodoScenarioTest {
 
   private static final String USERNAME = "user";
   private static final String PASSWORD = "user";
