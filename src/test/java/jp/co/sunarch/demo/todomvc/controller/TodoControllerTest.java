@@ -1,5 +1,6 @@
 package jp.co.sunarch.demo.todomvc.controller;
 
+import jp.co.sunarch.demo.todomvc.SecurityConfiguration;
 import jp.co.sunarch.demo.todomvc.domain.Todo;
 import jp.co.sunarch.demo.todomvc.service.TodoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -25,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(TodoController.class)
+@Import(SecurityConfiguration.class)
 class TodoControllerTest {
 
   @Autowired
