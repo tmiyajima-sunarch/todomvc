@@ -3,6 +3,9 @@ package jp.co.sunarch.demo.todomvc.service;
 
 import jp.co.sunarch.demo.todomvc.domain.Todo;
 import jp.co.sunarch.demo.todomvc.repository.TodoRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +14,8 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class TodoService {
+  private static final Logger LOG = LoggerFactory.getLogger(TodoService.class);
+ 
   private final TodoRepository todoRepository;
 
   public TodoService(TodoRepository todoRepository) {
@@ -31,6 +36,7 @@ public class TodoService {
     todo.setUsername(username);
     todo.setTitle(title);
     Todo saved = this.todoRepository.save(todo);
+    LOG.info("Todo '{}' added by '{}'", saved.getId(), username);
     return saved.getId();
   }
 
@@ -38,6 +44,7 @@ public class TodoService {
   public void deleteTodo(String username, long todoId) {
     Todo todo = this.findTodoOrElseThrow(username, todoId);
     this.todoRepository.delete(todo);
+    LOG.info("Todo '{}' deleted by '{}'", todoId, username);
   }
 
   @Transactional
@@ -45,6 +52,7 @@ public class TodoService {
     Todo todo = this.findTodoOrElseThrow(username, todoId);
     todo.setTitle(newTitle);
     this.todoRepository.save(todo);
+    LOG.info("Todo '{}' updated by '{}'", todoId, username);
   }
 
   @Transactional
@@ -52,6 +60,7 @@ public class TodoService {
     Todo todo = this.findTodoOrElseThrow(username, todoId);
     todo.toggle();
     this.todoRepository.save(todo);
+    LOG.info("Todo '{}' toggled by '{}'", todoId, username);
   }
 
   private Todo findTodoOrElseThrow(String username, long todoId) {
